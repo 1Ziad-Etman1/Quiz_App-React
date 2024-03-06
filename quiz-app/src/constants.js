@@ -2,6 +2,12 @@ export const jsQuizz = {
 	questions: [
 		{
 			question:
+				"______ provide a way to pass the data from component to another. Fill in the blanck",
+			type: "FIB",
+			correctAnswer: "props",
+		},
+		{
+			question:
 				"Which of the following is used in React.js to increase performance?",
 			choices: [
 				"Virtual DOM",

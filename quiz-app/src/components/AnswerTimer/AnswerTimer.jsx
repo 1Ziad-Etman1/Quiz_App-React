@@ -1,27 +1,26 @@
 import "./AnswerTimer.scss";
 import React, { useState, useEffect, useRef } from "react";
 
-const AnswerTimer = (duration, onTimeUp) => {
+const AnswerTimer = (props) => {
 	const [counter, setCounter] = useState(0);
 	const [progressLoaded, serProgressLoaded] = useState(0);
 	const intervalRef = useRef();
 
 	useEffect(() => {
 		intervalRef.current = setInterval(() => {
-			setCounter((cur) => cur + 1);
-		}, 1000);
+			setCounter((cur) => cur + 0.05);
+		}, 50);
 
 		return () => clearInterval(intervalRef.current);
 	}, []);
 
 	useEffect(() => {
-		serProgressLoaded(100 * (counter / duration.duration));
+		serProgressLoaded(100 * (counter / props.duration));
 
-		if (counter === duration.duration) {
+		if (counter >= props.duration) {
 			clearInterval(intervalRef.current);
-			console.log("type : " + typeof onTimeUp);
 			setTimeout(() => {
-				onTimeUp();
+				props.onTimeUp();
 			}, 1000);
 		}
 	}, [counter]);
